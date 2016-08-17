@@ -36,8 +36,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :coap_webserver, CoapWebserver.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "coap_webserver_user",
+  password: "",
   database: "coap_webserver_dev",
   hostname: "localhost",
   pool_size: 10
