@@ -2,7 +2,7 @@ defmodule CoapWebserver.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", CoapWebserver.RoomChannel
+  channel "resource:*", CoapWebserver.ResourceChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

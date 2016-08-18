@@ -18,4 +18,20 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+import socket from "./socket"
+
+const resourceInput = document.getElementById("resource-name-input")
+const observeButton = document.getElementById("observe-resource-button")
+
+observeButton.addEventListener("click", () => {
+  const resourcePath = resourceInput.value
+  const channel = socket.channel("resource:" + resourcePath, {})
+
+  channel.on("resource_state_updated", (resource) => {
+    console.log("name: " + resource.name + " state: " + resource.state);
+  })
+
+  channel.join()
+    .receive("ok", resp => { console.log("Joined successfully", resp) })
+    .receive("error", resp => { console.log("Unable to join", resp) })
+})
